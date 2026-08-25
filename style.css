@@ -370,15 +370,25 @@ footer{
   color:inherit;
 }
 .circle-btn-ring{
+  position:relative; z-index:1;
   width:52px; height:52px; border-radius:50%;
-  border:1.5px solid rgba(241,250,238,0.35);
+  background:var(--gold);
   display:flex; align-items:center; justify-content:center;
   flex-shrink:0;
-  transition:background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  transition:background 0.2s ease, transform 0.2s ease;
 }
-.circle-btn-ring svg{ width:18px; height:18px; stroke:var(--off-white); transition:transform 0.2s ease; }
-.circle-btn:hover .circle-btn-ring{ background:var(--gold); border-color:var(--gold); transform:scale(1.06); }
-.circle-btn:hover .circle-btn-ring svg{ stroke:var(--charcoal); transform:translateX(2px); }
+.circle-btn-ring::before{
+  content:"";
+  position:absolute;
+  top:8px; left:8px; right:-8px; bottom:-8px;
+  background:var(--gold);
+  opacity:0.55;
+  border-radius:50%;
+  z-index:-1;
+}
+.circle-btn-ring svg{ width:18px; height:18px; stroke:var(--charcoal); transition:transform 0.2s ease; }
+.circle-btn:hover .circle-btn-ring{ background:#FFE066; transform:scale(1.06); }
+.circle-btn:hover .circle-btn-ring svg{ transform:translateX(2px); }
 .circle-btn-label{
   font-family:'Oswald',sans-serif; font-weight:600; font-size:13px;
   letter-spacing:0.08em; text-transform:uppercase;
