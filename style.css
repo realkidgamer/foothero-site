@@ -390,6 +390,7 @@ footer{
 .circle-btn:hover .circle-btn-ring{ background:#FFE066; transform:scale(1.06); }
 .circle-btn:hover .circle-btn-ring svg{ transform:translateX(2px); }
 .circle-btn-label{
+  color:var(--off-white);
   font-family:'Oswald',sans-serif; font-weight:600; font-size:13px;
   letter-spacing:0.08em; text-transform:uppercase;
 }
