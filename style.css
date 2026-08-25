@@ -299,6 +299,22 @@ footer{
   padding:160px 6vw 70px;
   position:relative; overflow:hidden;
 }
+.article-hero::before{
+  content:"";
+  position:absolute; z-index:1;
+  height:110px; width:160%;
+  left:-10%; bottom:-46px;
+  background:var(--red);
+  transform:rotate(-8deg);
+}
+.article-hero::after{
+  content:"";
+  position:absolute; z-index:1;
+  right:-140px; top:50%; transform:translateY(-50%);
+  width:380px; height:380px;
+  border-radius:50%;
+  border:12px solid rgba(241,250,238,0.06);
+}
 .article-hero .tag{ position:relative; z-index:2; }
 .article-hero h1{
   color:var(--off-white); position:relative; z-index:2;
@@ -337,6 +353,32 @@ footer{
   font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
   color:var(--red); display:inline-flex; align-items:center; gap:8px;
 }
+
+/* ---------- CIRCLE ARROW BUTTON ---------- */
+.circle-btn{
+  display:inline-flex; align-items:center; gap:14px;
+  color:inherit;
+}
+.circle-btn-ring{
+  width:52px; height:52px; border-radius:50%;
+  border:1.5px solid rgba(241,250,238,0.35);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+  transition:background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.circle-btn-ring svg{ width:18px; height:18px; stroke:var(--off-white); transition:transform 0.2s ease; }
+.circle-btn:hover .circle-btn-ring{ background:var(--gold); border-color:var(--gold); transform:scale(1.06); }
+.circle-btn:hover .circle-btn-ring svg{ stroke:var(--charcoal); transform:translateX(2px); }
+.circle-btn-label{
+  font-family:'Oswald',sans-serif; font-weight:600; font-size:13px;
+  letter-spacing:0.08em; text-transform:uppercase;
+}
+.related-head{
+  display:flex; align-items:flex-end; justify-content:space-between;
+  flex-wrap:wrap; gap:24px; margin-bottom:40px;
+}
+.related-head .section-tag{ margin-bottom:14px; }
+.related h2{ margin-bottom:0; }
 .related{
   background:var(--navy); padding:90px 6vw;
 }
