@@ -162,7 +162,8 @@ section{ padding:110px 6vw; }
   z-index:-1;
 }
 .story-card:hover{ transform:translateY(-6px); box-shadow:0 22px 44px -10px rgba(0,0,0,0.4), 0 6px 14px rgba(0,0,0,0.18); }
-.story-card.light{ background:var(--off-white); border:1px solid rgba(27,27,30,0.08); }
+.story-card.light{ background:#FFFFFF; border:1px solid rgba(27,27,30,0.1); }
+.story-card.light::before{ background:rgba(27,27,30,0.1); }
 .tag{
   align-self:flex-start;
   font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
@@ -185,6 +186,38 @@ section{ padding:110px 6vw; }
   color:var(--gold); display:inline-flex; align-items:center; gap:6px;
 }
 .story-card.light .read-link{ color:var(--red); }
+
+/* ---------- VIDEOS ---------- */
+.videos{ background:var(--off-white); }
+.video-grid{
+  display:flex; gap:28px; flex-wrap:wrap;
+}
+.video-status{ color:var(--charcoal); opacity:0.6; font-size:14px; }
+.video-card{
+  flex:1 1 300px; max-width:calc(33.333% - 19px);
+  background:var(--charcoal); border-radius:4px; overflow:hidden;
+  text-decoration:none; display:block;
+  box-shadow:0 14px 30px -8px rgba(0,0,0,0.35), 0 4px 10px rgba(0,0,0,0.15);
+  transition:transform 0.25s ease, box-shadow 0.25s ease;
+}
+@media (max-width:900px){ .video-card{ max-width:100%; } }
+.video-card:hover{ transform:translateY(-6px); box-shadow:0 22px 44px -10px rgba(0,0,0,0.4), 0 6px 14px rgba(0,0,0,0.18); }
+.video-thumb-wrap{ position:relative; aspect-ratio:16/9; background:var(--charcoal); }
+.video-thumb{ width:100%; height:100%; object-fit:cover; display:block; }
+.video-play{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+}
+.video-play svg{
+  width:56px; height:56px; padding:14px;
+  background:rgba(27,27,30,0.55); border-radius:50%;
+  fill:var(--off-white);
+  transition:background 0.2s ease, transform 0.2s ease;
+}
+.video-card:hover .video-play svg{ background:var(--red); transform:scale(1.08); }
+.video-title{
+  color:var(--off-white); font-family:'Oswald',sans-serif; font-weight:600;
+  font-size:15px; line-height:1.3; padding:16px 18px;
+}
 
 /* ---------- VALUES ---------- */
 .values{ background:var(--navy); }

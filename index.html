@@ -17,6 +17,7 @@
   </a>
   <div class="nav-links">
     <a href="#stories">Stories</a>
+    <a href="#videos">Videos</a>
     <a href="#values">Values</a>
     <a href="#mission">Mission</a>
   </div>
@@ -99,6 +100,16 @@
   </div>
 </section>
 
+<section class="videos" id="videos">
+  <div class="section-head">
+    <span class="section-tag">Fresh Off The Channel</span>
+    <h2>Watch the latest drops.</h2>
+  </div>
+  <div class="video-grid" id="video-grid">
+    <p class="video-status" id="video-status">Loading latest videos…</p>
+  </div>
+</section>
+
 <section class="values" id="values">
   <div class="section-head">
     <span class="section-tag">What We Stand For</span>
@@ -162,6 +173,7 @@
       <div class="footer-col">
         <h4>Explore</h4>
         <a href="#stories">Stories</a>
+        <a href="#videos">Videos</a>
         <a href="#values">Values</a>
         <a href="#mission">Mission</a>
       </div>
@@ -231,6 +243,63 @@ function formatCount(n){
 }
 
 loadChannelStats();
+
+/* =====================================================================
+   LATEST VIDEOS
+   -----------------------------------------------------------------
+   Pulls the channel's most recent uploads (thumbnail + title) from
+   the same YouTube Data API v3 key above and links each one straight
+   to the video on YouTube. Uses the channel's "uploads" playlist,
+   which costs the same 1 quota unit as a single lookup.
+===================================================================== */
+const YT_UPLOADS_PLAYLIST = "UU" + YT_CHANNEL_ID.slice(2);
+
+async function loadLatestVideos(){
+  const grid = document.getElementById('video-grid');
+  const status = document.getElementById('video-status');
+  if(YT_API_KEY === "YOUR_API_KEY_HERE"){
+    status.textContent = "Add your YouTube API key in the code to show latest videos.";
+    return;
+  }
+  try{
+    const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${YT_UPLOADS_PLAYLIST}&maxResults=6&key=${YT_API_KEY}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if(!data.items || !data.items.length){
+      status.textContent = "No videos found yet — check back soon.";
+      return;
+    }
+    status.remove();
+    data.items.forEach(item => {
+      const s = item.snippet;
+      const videoId = s.resourceId.videoId;
+      const thumb = (s.thumbnails.high || s.thumbnails.medium || s.thumbnails.default).url;
+      const card = document.createElement('a');
+      card.href = `https://www.youtube.com/watch?v=${videoId}`;
+      card.target = "_blank";
+      card.rel = "noopener";
+      card.className = "video-card";
+      card.innerHTML = `
+        <div class="video-thumb-wrap">
+          <img class="video-thumb" loading="lazy">
+          <span class="video-play">
+            <svg viewBox="0 0 24 24"><polygon points="7,4 20,12 7,20"/></svg>
+          </span>
+        </div>
+        <h3 class="video-title"></h3>
+      `;
+      card.querySelector('.video-thumb').src = thumb;
+      card.querySelector('.video-thumb').alt = s.title;
+      card.querySelector('.video-title').textContent = s.title;
+      grid.appendChild(card);
+    });
+  }catch(err){
+    status.textContent = "Videos temporarily unavailable — watch them on YouTube instead.";
+    console.error("FootHero videos error:", err);
+  }
+}
+
+loadLatestVideos();
 </script>
 
 </body>
