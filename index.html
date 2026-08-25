@@ -107,6 +107,12 @@
   </div>
   <div class="video-grid" id="video-grid">
     <p class="video-status" id="video-status">Loading latest videos…</p>
+    <a href="https://www.youtube.com/channel/UCBneaFVqtAN_Cb7XlzxvszA/videos" target="_blank" rel="noopener" class="video-card video-more" id="video-more" title="All Videos" aria-label="All Videos">
+      <span class="video-more-arrow">
+        <svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="video-more-label">All Videos</span>
+    </a>
   </div>
 </section>
 
@@ -262,7 +268,7 @@ async function loadLatestVideos(){
     return;
   }
   try{
-    const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${YT_UPLOADS_PLAYLIST}&maxResults=6&key=${YT_API_KEY}`;
+    const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${YT_UPLOADS_PLAYLIST}&maxResults=5&key=${YT_API_KEY}`;
     const res = await fetch(url);
     const data = await res.json();
     if(!data.items || !data.items.length){
@@ -291,7 +297,7 @@ async function loadLatestVideos(){
       card.querySelector('.video-thumb').src = thumb;
       card.querySelector('.video-thumb').alt = s.title;
       card.querySelector('.video-title').textContent = s.title;
-      grid.appendChild(card);
+      grid.insertBefore(card, document.getElementById('video-more'));
     });
   }catch(err){
     status.textContent = "Videos temporarily unavailable — watch them on YouTube instead.";
