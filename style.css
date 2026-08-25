@@ -364,42 +364,7 @@ footer{
   color:var(--red); display:inline-flex; align-items:center; gap:8px;
 }
 
-/* ---------- CIRCLE ARROW BUTTON ---------- */
-.circle-btn{
-  display:inline-flex; align-items:center; gap:14px;
-  color:inherit;
-}
-.circle-btn-ring{
-  position:relative; z-index:1;
-  width:52px; height:52px; border-radius:50%;
-  background:var(--gold);
-  display:flex; align-items:center; justify-content:center;
-  flex-shrink:0;
-  transition:background 0.2s ease, transform 0.2s ease;
-}
-.circle-btn-ring::before{
-  content:"";
-  position:absolute;
-  top:8px; left:8px; right:-8px; bottom:-8px;
-  background:var(--gold);
-  opacity:0.55;
-  border-radius:50%;
-  z-index:-1;
-}
-.circle-btn-ring svg{ width:18px; height:18px; stroke:var(--charcoal); transition:transform 0.2s ease; }
-.circle-btn:hover .circle-btn-ring{ background:#FFE066; transform:scale(1.06); }
-.circle-btn:hover .circle-btn-ring svg{ transform:translateX(2px); }
-.circle-btn-label{
-  color:var(--off-white);
-  font-family:'Oswald',sans-serif; font-weight:600; font-size:13px;
-  letter-spacing:0.08em; text-transform:uppercase;
-}
-.related-head{
-  display:flex; align-items:flex-end; justify-content:space-between;
-  flex-wrap:wrap; gap:24px; margin-bottom:40px;
-}
-.related-head .section-tag{ margin-bottom:14px; }
-.related h2{ margin-bottom:0; }
+.related-head{ margin-bottom:40px; }
 .related{
   background:var(--navy); padding:90px 6vw;
 }
