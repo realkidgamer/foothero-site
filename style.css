@@ -142,6 +142,13 @@ section{ padding:110px 6vw; }
 .story-grid{
   display:flex; gap:28px; flex-wrap:wrap;
 }
+/* Archive page: fixed-column grid so a trailing card sits at fixed
+   size on the left instead of stretching to fill an incomplete row. */
+#all-stories .story-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+}
+@media (max-width:900px){ #all-stories .story-grid{ grid-template-columns:1fr; } }
 .story-card{ flex:1 1 260px; }
 @media (max-width:900px){ .story-card{ flex:1 1 100%; } }
 .story-card{
